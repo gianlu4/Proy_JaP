@@ -364,3 +364,39 @@ border-width: 1px 0;
 }
 
 /*finalizacion de info produc*/
+
+*{
+  font-family:sans-serif;
+}
+
+/*Comienzo de cart.html*/
+
+
+#divCARRITO{
+  width: auto;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.col-md-4  {
+  justify-content: center;
+  display: flex;
+  width: 20%;
+
+}
+#form1{
+margin-top: 1px;
+padding-left: .75em;
+padding-right: .75em;
+width: 90%;
+}
+#pp{
+  margin-top: 3%;
+}
+
+#calle{
+
+  width: 400px;
+}
+#numeroCART{
+  width: 100PX;
+}
