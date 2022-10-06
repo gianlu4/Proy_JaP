@@ -30,10 +30,11 @@ let infoProd = ProductosInfoData;
         <h4 id = "prueba">` + infoProd.description + `</h4>
       </div>  
   </div>
-  <div class="">
+  <div class="row ">
+  <div class="col"
     <p><b>Precio:` + " " + infoProd.currency + " " + ` <font color ="green"> ` + infoProd.cost + `</font>.</b></p>
-    <br>
-    <p><b>Cantidad de vendidos: <font color="red">`+ " " + infoProd.soldCount + `</font>.</b></p>
+    </div><br>
+    <p><b>Cantidad de vendidos: <font color="red">`+ " " + infoProd.soldCount + `</font>.</b></p><p><button type="button" id="AñadirProductoAlcarrito"class="btn btn-success">Añadir al carrito</button></p>
     <br>
     
 </div>
@@ -210,7 +211,7 @@ function mostrar(){
   }
   document.getElementById('Prod-comments-user').innerHTML += elementos;
   document.getElementById('comentario').value="";
-  document.getElementById('Puntaje').value="";
+  document.getElementById('Puntaje').value=1;
 }
 
 
@@ -241,6 +242,16 @@ function preguntarSiHayUsuario () {
 */
 
 
+// boton de aniadir a carrito
+
+function agregoCarrito (){
+
+
+
+
+}
+
+
 
 document.addEventListener("DOMContentLoaded", function(){
     getJSONData(ProductINFO_URL_modified).then(function(resultObj){
@@ -263,7 +274,13 @@ document.addEventListener("DOMContentLoaded", function(){
           mostrarComentarios();
          
       }
+
+      document.getElementById("AñadirProductoAlcarrito").addEventListener('click', function(){
+        alert("hola mundooooooooooo");
+       })
+      
   });
+ 
 
   document.getElementById("botonsito").addEventListener("click", function(){
 
@@ -279,7 +296,9 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById('comentario').value="";
     document.getElementById('Puntaje').value="";
 
-}
-   })
+  }})
+  
+
+  
    
 });

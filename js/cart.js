@@ -1,6 +1,7 @@
 let carroProd = [];
 let unidadXcosto = 0;
-let MONEY_SYMBOL = "$";
+let MONEY_SYMBOL = "USD";
+
 
 
 function showCART (array) {
@@ -30,7 +31,7 @@ for(let i = 0; i < array.length; i ++){
     <div class="col-md-4">
       <div class = "">
         <p  id= "pp"class="small text-muted">Cantidad</p>
-        <input onchange="actualizarValores();" id="form1" min="0" name="quantity" value="1" type="number"
+        <input onchange="actualizarValores(${datosCarrito.unitCost});" id="form1" min="1" name="quantity" value="1" type="number"
         class="form-control" />
       </div>
     </div>
@@ -43,7 +44,7 @@ for(let i = 0; i < array.length; i ++){
     <div class="col-md-4">
       <div>
         <p class="small text-muted">Sub-total</p>
-        <p class="lead fw-normal mb-0" id="precioSUBTOTAL"></p>
+        <p class="lead fw-normal mb-0" id="precioSUBTOTAL">USD ${datosCarrito.unitCost}</p>
       </div>
     </div>
 
@@ -51,7 +52,7 @@ for(let i = 0; i < array.length; i ++){
   </div>
   </div>
 `
- 
+
 
 }
 
@@ -60,20 +61,12 @@ document.getElementById('divCarr').innerHTML = HTMLcarrito;
 }
 
 
+function actualizarValores(precioProd) {
 
-function actualizarValores(carroProd) {
-
-    let valorDelProducto = carroProd[0].unitCost;
-
-    if(unidadXcosto == 1){
-        valorDelProducto
-    }else{
-        valorDelProducto * unidadXcosto
-
-    }
+    let cantidadProd = document.getElementById('form1').value;
 
 
-    let totalCostToShow = MONEY_SYMBOL + ((Math.round(unidadXcosto * valorDelProducto )) + parseInt(unidadXcosto));
+    let totalCostToShow = MONEY_SYMBOL +" "+ cantidadProd * precioProd;
 
     precioSUBTOTAL.innerHTML = totalCostToShow;
 }
@@ -86,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function(){
             carroProd = resultObj.data.articles;
             
                 showCART(carroProd);
-                actualizarValores(carroProd);
+                
         }
     });
     
