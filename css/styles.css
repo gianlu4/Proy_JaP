@@ -400,3 +400,17 @@ width: 90%;
 #numeroCART{
   width: 100PX;
 }
+
+
+#botonLimpiar{
+  padding: 12px;
+  margin: 10px;
+  width: 5%;
+  margin-bottom: 68px;
+}
+
+.padre{
+  display: flex;
+  align-items: flex-end;
+
+}

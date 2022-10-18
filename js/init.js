@@ -10,7 +10,7 @@ const EXT_TYPE = ".json";
 let Product_URL_modified = PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE; //identificador
 let ProductINFO_URL_modified = PRODUCT_INFO_URL + localStorage.getItem("catIDinfoProd") + EXT_TYPE;
 let ProductCommentsInfo = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("catIDinfoProd") + EXT_TYPE;
-let CarritoProducts = CART_INFO_URL + 25801 + EXT_TYPE;
+const CarritoProducts = CART_INFO_URL + 25801 + EXT_TYPE;
 
 
 let showSpinner = function(){

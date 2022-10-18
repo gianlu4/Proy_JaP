@@ -34,7 +34,7 @@ let infoProd = ProductosInfoData;
   <div class="col"
     <p><b>Precio:` + " " + infoProd.currency + " " + ` <font color ="green"> ` + infoProd.cost + `</font>.</b></p>
     </div><br>
-    <p><b>Cantidad de vendidos: <font color="red">`+ " " + infoProd.soldCount + `</font>.</b></p><p><button type="button" id="AñadirProductoAlcarrito"class="btn btn-success">Añadir al carrito</button></p>
+    <p><b>Cantidad de vendidos: <font color="red">`+ " " + infoProd.soldCount + `</font>.</b></p><p><button type="button" id="AñadirProductoAlcarrito"class="btn btn-success">Comprar</button></p>
     <br>
     
 </div>
@@ -242,12 +242,28 @@ function preguntarSiHayUsuario () {
 */
 
 
-// boton de aniadir a carrito
-
-function agregoCarrito (){
+//desafiate agregar cosas al carrito
 
 
+ 
+let productosCarrito = [];
 
+function agregoCarrito (ProductosInfoData){
+  
+  let objNuevo = {}
+ 
+  objNuevo.name = ProductosInfoData.name;
+  objNuevo.unitCost = ProductosInfoData.cost;
+  objNuevo.currency = ProductosInfoData.currency;
+  objNuevo.image = ProductosInfoData.images[0];
+  
+
+  
+//JSON.parse(localStorage.getItem('carrito')) ;//
+
+productosCarrito.push(objNuevo);//
+
+localStorage.setItem('carrito', JSON.stringify(productosCarrito));//
 
 }
 
@@ -276,10 +292,21 @@ document.addEventListener("DOMContentLoaded", function(){
       }
 
       document.getElementById("AñadirProductoAlcarrito").addEventListener('click', function(){
-        alert("hola mundooooooooooo");
+        agregoCarrito(ProductosInfoData);
+        Swal.fire({
+          icon: 'success',
+          title: 'Se agregó al carrito',
+        })
        })
+
+       productosCarrito = JSON.parse(localStorage.getItem('carrito'));
+       if (productosCarrito == null){
+        productosCarrito = [];
+       }
+      
       
   });
+
  
 
   document.getElementById("botonsito").addEventListener("click", function(){
