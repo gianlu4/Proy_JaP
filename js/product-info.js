@@ -250,19 +250,18 @@ let productosCarrito = [];
 
 function agregoCarrito (ProductosInfoData){
   
+  //se crea el objeto donde se guardaran los diferentes productos
   let objNuevo = {}
  
+  objNuevo.id = JSON.parse(localStorage.getItem("catIDinfoProd"));
   objNuevo.name = ProductosInfoData.name;
   objNuevo.unitCost = ProductosInfoData.cost;
   objNuevo.currency = ProductosInfoData.currency;
   objNuevo.image = ProductosInfoData.images[0];
   
-
-  
-//JSON.parse(localStorage.getItem('carrito')) ;//
-
+//se pushea el objeto nuevo dentro de nuestro array 
 productosCarrito.push(objNuevo);//
-
+//se guarda la clave y el valor. y se convierte a un array de strings
 localStorage.setItem('carrito', JSON.stringify(productosCarrito));//
 
 }
@@ -298,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function(){
           title: 'Se agregó al carrito',
         })
        })
-
+       //si cuando se cargue la pagina el array no existe le decimos que lo cree.
        productosCarrito = JSON.parse(localStorage.getItem('carrito'));
        if (productosCarrito == null){
         productosCarrito = [];

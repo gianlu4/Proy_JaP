@@ -393,16 +393,9 @@ width: 90%;
   margin-top: 3%;
 }
 
-#calle{
-
-  width: 400px;
-}
-#numeroCART{
-  width: 100PX;
-}
 
 
-#botonLimpiar{
+.botonLimpiar{
   padding: 12px;
   margin: 10px;
   width: 5%;

@@ -68,45 +68,151 @@
 <h5 class="mb-3">Tipo de envío</h5>
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
-              <input id="" name="publicationType" type="radio" class="custom-control-input" checked=""
+              <input id="" name="publicationType" type="radio" onchange="actualizarValores()" value=0.15 class="custom-control-input"
                 required="">
               <label class="custom-control-label" for="goldradio">Premium de 2 a 5 días (15%)</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="" name="publicationType" type="radio" class="custom-control-input" required="">
+              <input id="" name="publicationType" type="radio" onchange="actualizarValores()" value=0.07 class="custom-control-input" required="">
               <label class="custom-control-label" for="premiumradio">Express de 6 a 8 días (7%)</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="" name="publicationType" type="radio" class="custom-control-input" required="">
+              <input id="" name="publicationType" type="radio" onchange="actualizarValores()" value=0.05 class="custom-control-input" required="" checked>
               <label class="custom-control-label" for="standardradio">Estándar de 12 a 15 días (5%)</label>
             </div>
             <hr>
 <div >            
 <h5 class="mb-3">Direccion de envío</h5>   
+<div class="container ">
+  <div class="row needs-validation">
+    <div class="col-6 p-0">
+      <input  class="form-control example" type="text" placeholder="Calle"name="Calle" id="calle" style="width: 98%;" required>  
+      <div class="invalid-feedback">
+        Debe ingresar una calle.
+      </div> 
+    </div>
+    <div class="col-6">
+  <input  class="form-control" type="number" min="0" placeholder="Numero"name="buscar" id="numeroCART" style="width: 30%;" required>
+  <div class="invalid-feedback">
+    Debe ingresar un número.
+  </div>
+    </div>
 
-<div class="d-flex">
-  <input  class="form-control" type="search" placeholder="Calle"name="Calle" id="calle">   <input  class="form-control" type="number" min="0" placeholder="Numero"name="buscar" id="numeroCART">
-</div> <br>
-<input  class="form-control" type="search" placeholder="Esquina"name="Esquina" id="calle">
+  </div> <br>
+    <div class="row ">
+      <div class="col-6 p-0">
+        <input  class="form-control" type="text" placeholder="Esquina"name="Esquina" id="esquina" style="width: 98%;" required >
+        <div class="invalid-feedback">
+          Debe ingresar una esquina.
+        </div>
+      </div>
+    </div>
 </div><br>
 <hr>
-        <div class="card mb-4">
-          <div class="card-body p-4">
+        <div>
+          
 
-            <div class="float-end">
-              <p class="mb-0 me-5 d-flex align-items-center">
-                <span class="small text-muted me-2">Total:</span> <span
-                  class="lead fw-normal"id="valorTOTAL"></span>
-              </p>
-            </div>
+            <ul class="list-group">
+              <li class="list-group-item"> Sub-Total :
+            <span  id="sub" class="float-end"></span> 
+              </li>
+              <li class="list-group-item">Costo de envío :
+                <span class="small text-muted m-1">Segun el tipo de envío.</span><span  id="envio" class="float-end"></span> 
+              </li>  
+              <li class="list-group-item">Total (USD) :<b><span  id="total" class="float-end"></span> </b>
+              </li>
+            </ul>
 
-          </div>
+          
         </div>
         <hr>
+        <h5 class="mb-3">Forma de pago</h5> 
+        <!-- enlace que dispara el modal -->
+        <span class="text-muted" id="seleccionDeMetodoDePago">No ha seleccionado</span><span> - <a href=""data-bs-toggle="modal" id="selectPayments" data-bs-target="#staticBackdrop">Seleccionar</a></span>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Forma de pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        <input id="card-payments" name="kabom" type="radio"  required="" >
+        <label class="">Tarjeta de crédito o débito</label>
+        <hr>
+        <div name="kabom">
+          <div class="row">
+            <div class="col-6">
+              <span class="text-muted">Número de tarjeta</span>
+              <input class="form-control" type="number" placeholder="" min="0" id="numeroTarjeta" disabled>
+            </div>
+            <div class="col-6">
+              <span class="text-muted">Código de seg.</span>
+              <input class="form-control" type="number" placeholder="" id="codigoSeguridad" min="0" disabled style="width: 60%;">
+            </div>
+          </div>
+          
+          <div class="row">
+            <span class="text-muted ">Vencimiento (MM/AA)</span>
+            <div class="col-4 "> 
+              <select class="form-control" id="vtoCardMes" style="width: 100%;" disabled>
+                <option value=""selected></option>
+                <option value="01">Enero</option>
+                <option value="02">Febrero </option>
+                <option value="03">Marzo</option>
+                <option value="04">Abril</option>
+                <option value="05">Mayo</option>
+                <option value="06">Junio</option>
+                <option value="07">Julio</option>
+                <option value="08">Agosto</option>
+                <option value="09">Setiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+                
+              </select>
+            </div>
+            <select class="form-control" id="vtoCardAnio" style="width: 13%;" disabled>
+                <option value=""selected></option>
+                <option value="16"> 2022</option>
+                <option value="17"> 2023</option>
+                <option value="18"> 2024</option>
+                <option value="19"> 2025</option>
+                <option value="20"> 2026</option>
+                <option value="21"> 2027</option>
+                <option value="22"> 2028</option>
+                <option value="23"> 2029</option>
+                <option value="24"> 2030</option>
+                
+            </select>
+          </div>
+        </div>
+          <br>
+            <input id="bank-payments" name="kabom" type="radio" class="" required="" >
+            <label class="">Transferencia bancaria</label>
+            <hr>
+            <div class="row">
+              <div class="col-6"name="kabom">
+                <span class="text-muted">Número de cuenta</span>
+                <input class="form-control" disabled type="number" placeholder="" min="0" id="cuentaTransferencia">
+              </div>
+            </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success"data-bs-dismiss="modal" id="confirmarMetodoDePago" >Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-light btn-lg me-2">Continuar comprando</button>
-          <button type="button" class="btn btn-primary btn-lg">Comprar</button>
+          <button  type="button" class="btn btn-light btn-lg me-2"><a href="categories.html">Continuar comprando</a></button>
+          <button type="button" class="btn btn-primary btn-lg" id="comprar">Comprar</button>
         </div>
 
       </div>
