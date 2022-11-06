@@ -103,8 +103,7 @@ for (let i=0; i< borrarName.length; i++){
 
 }
 
-
-
+//calculos de porcentajes por envios
 
 function actualizarValores() {
 
@@ -145,6 +144,8 @@ function actualizarValores() {
 }
 
 
+
+
 //funcion que bloquea metodos de pago dependiendo que input radio elija
 
 let cards = document.getElementById('card-payments');//input radio
@@ -165,7 +166,7 @@ cards.addEventListener('click', (e)=>{//input radio tarjeta debito o credito
   vtoCardsMes.disabled = false;
   cardInput.disabled = false;
   codSegInput.disabled = false;
-  vtoCards.disabled = false;
+ // vtoCards.disabled = false;
 })
   banks.addEventListener('click',(e)=>{//input radio transferencia bancaria
 
@@ -174,11 +175,10 @@ cards.addEventListener('click', (e)=>{//input radio tarjeta debito o credito
     vtoCardsMes.disabled = true;
     cardInput.disabled = true;
     codSegInput.disabled = true;
-    vtoCards.disabled = true;
+  //  vtoCards.disabled = true;
   })
 
 }
-
 
 //esta funcion cambia el nombre de metodo de pago
 function selectPayment(){
@@ -191,36 +191,38 @@ if(cards.checked == true){
 
   document.getElementById('seleccionDeMetodoDePago').innerHTML = "Transferencia bancaria";
 
+}else if(banks.checked == false && cards.checked == false){
+
+  document.getElementById('seleccionDeMetodoDePago').innerHTML = "No ha seleccionado";
 }
 }
-/*
-function showAlertError() {
-  document.getElementById("alert-danger").classList.add("show");
+
+
+//funcion de validaciones
+function terminos(){
+
+  let resultado = false;
+
+if (banks.checked || cards.checked){
+  document.getElementById("selectPayments").classList.remove("invalid-color");
+  document.getElementById("AlertSeleccionPago").style.display = "none";
+  resultado = true;
+}else{
+  resultado = false;
+
+  document.getElementById("selectPayments").classList.add("invalid-color");
+  document.getElementById("AlertSeleccionPago").style.display = "block";
 }
-*/
-function verificacionDatosCompra (){
 
-let numeroDireccion = document.getElementById('numeroCART');
-let esquinaDireccion = document.getElementById('esquina');
-let calleDireccion = document.getElementById('calle');
+document.getElementById('form').classList.add('was-validated');
 
-console.log(esquinaDireccion);
-
-if(numeroDireccion.value == "" || esquinaDireccion.value == "" || calleDireccion.value == ""){
-
-  document.getElementsByClassName(".invalid-feedback").classList.remove("valid");
-  document.getElementsByClassName(".invalid-feedback").classList.add("invalid");
+  let eventos=['change', 'input'];//variable creada en clase para poder actualizar el span del seleccion de metodo de pago
   
+  eventos.forEach( evento=> {document.body.addEventListener(evento, terminos)})
+
+return resultado;
 
 }
-
-
-
-
-}
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -241,22 +243,32 @@ document.addEventListener("DOMContentLoaded", function(){
         
         
     });
-    //esto es para bloquear metodos de pago
+    //esto es para bloquear metodos de pago 
     document.getElementById('selectPayments').addEventListener('click', ()=>{
       blocking();
     })//esto es para cambiar el valor del span al selector de metodo de pago
     document.getElementById('confirmarMetodoDePago').addEventListener('click', ()=>{
       selectPayment();
-     
     })
-    document.getElementById('comprar').addEventListener('submit', (event)=>{
-     
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-        verificacionDatosCompra();
-      }
-    })
-   
 }); 
 
+//id del boton comprar y cambie el evento de submit a click
+document.getElementById('comprar').addEventListener('click', evento=>{
+
+  if( !terminos() || !form.checkValidity() ){ //checkValidity() comprueba si el elemento tiene restricciones y si las cumple.
+      evento.preventDefault();//Llamar a preventDefault en cualquier momento durante la ejecución, cancela el evento, lo que significa que cualquier acción por defecto que deba producirse como resultado de este evento, no ocurrirá
+      evento.stopPropagation();//El método stopPropagation() de la interfaz Event evita la propagación adicional del evento actual en las fases de captura y bubbling
+  }else{
+    Swal.fire({
+      icon: 'success',
+      title: 'Su compra fue un éxito',
+      timer: 2000
+    }).then((
+    ) => {
+      document.getElementById('form').submit();
+    })
+
+  }
+  
+
+})

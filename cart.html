@@ -81,10 +81,11 @@
               <label class="custom-control-label" for="standardradio">Estándar de 12 a 15 días (5%)</label>
             </div>
             <hr>
-<div >            
+<form class="needs-validation" id="form" novalidate> 
+<div >       
 <h5 class="mb-3">Direccion de envío</h5>   
 <div class="container ">
-  <div class="row needs-validation">
+  <div class="row">
     <div class="col-6 p-0">
       <input  class="form-control example" type="text" placeholder="Calle"name="Calle" id="calle" style="width: 98%;" required>  
       <div class="invalid-feedback">
@@ -107,7 +108,8 @@
         </div>
       </div>
     </div>
-</div><br>
+</div>
+<br>
 <hr>
         <div>
           
@@ -127,9 +129,23 @@
         </div>
         <hr>
         <h5 class="mb-3">Forma de pago</h5> 
-        <!-- enlace que dispara el modal -->
-        <span class="text-muted" id="seleccionDeMetodoDePago">No ha seleccionado</span><span> - <a href=""data-bs-toggle="modal" id="selectPayments" data-bs-target="#staticBackdrop">Seleccionar</a></span>
-
+        <span class="text-muted" id="seleccionDeMetodoDePago">No ha seleccionado</span> <!-- enlace que dispara el modal -->
+        <span> - <a href=""data-bs-toggle="modal" id="selectPayments" data-bs-target="#staticBackdrop">Seleccionar</a></span> 
+        <div class="invalid-feedback" id="AlertSeleccionPago">
+          Debes seleccionar un método de pago
+        </div>
+        
+        <div class="d-flex justify-content-end">
+          <button  type="button" class="btn btn-light btn-lg me-2"><a href="categories.html">Continuar comprando</a></button>
+          <button type="button" class="btn btn-primary btn-lg" id="comprar">Comprar</button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+</form>
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -204,21 +220,10 @@
       </div>
       
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success"data-bs-dismiss="modal" id="confirmarMetodoDePago" >Confirmar</button>
+        <button type="button" class="btn btn-success"data-bs-dismiss="modal" id="confirmarMetodoDePago" >Confirmar</button>
       </div>
     </div>
   </div>
-</div>
-
-        <div class="d-flex justify-content-end">
-          <button  type="button" class="btn btn-light btn-lg me-2"><a href="categories.html">Continuar comprando</a></button>
-          <button type="button" class="btn btn-primary btn-lg" id="comprar">Comprar</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
 </div>
   </main>
   <footer class="text-muted">
