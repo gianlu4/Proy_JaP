@@ -5,9 +5,12 @@ let primerApellido = document.getElementById('primerApellido');
 let segundoApellido = document.getElementById('segundoApellido');
 let telefono = document.getElementById('telefono');
 let email = document.getElementById('email');
+let imagen = document.getElementById('imgProfile');
 let guardarObligatorios = [];
 
 //Muestra el mail en el valor del input
+
+
 
 function showEmail(){
 
@@ -22,7 +25,8 @@ function showEmail(){
             primerApellido.value = datos.primerApellido
             segundoApellido.value = datos.segundoApellido
             telefono.value = datos.telefono
-            email.value = datos.email;
+            email.value = datos.email
+            imagen.src = datos.imagen
 
 
             localStorage.setItem('Perfil',JSON.stringify(guardarObligatorios))
@@ -44,7 +48,6 @@ function fields(){
         
         res = true;
 
-
         let objPerfil = {}
 
         objPerfil.primerNombre = primerNombre.value;
@@ -53,6 +56,7 @@ function fields(){
         objPerfil.segundoApellido = segundoApellido.value;
         objPerfil.telefono = telefono.value;
         objPerfil.email = sessionStorage.getItem('user');
+        objPerfil.imagen = imagen.src;
 
         let array = [];
         
@@ -64,6 +68,36 @@ function fields(){
 return res;
 
 }
+
+
+
+//desafiate
+
+function readFile(input) {
+    if (input.files && input.files[0]) {
+        
+        let reader = new FileReader();//El objeto FileReader permite que las aplicaciones web lean ficheros usando los objetos Fileo Blob
+
+        reader.onload = function (e) {//El loadevento se activa cuando un archivo se ha leído correctamente.
+            let filePreview = document.getElementById('imgProfile');
+            //console.log(e.target.result)
+            //e.target.result contiene la data de base64 de la imagen subida
+            filePreview.src = e.target.result;//La propiedad devuelve el contenido del archivo
+        }
+
+        reader.readAsDataURL(input.files[0]);//El método readAsDataURLes usado para leer el contenido del especificado Blob o File
+    }
+}
+
+let fileUpload = document.getElementById('imagenInput');
+fileUpload.onchange = function (e) {
+    readFile(e.srcElement);
+}
+
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -91,7 +125,7 @@ document.getElementById('btnSave').addEventListener('click', evento=>{
         primerApellido.value ="";
         segundoApellido.value = "";
         telefono.value = "";
-    }else{     
+    }else{   
         Swal.fire({
             icon: 'success',
             title: 'Datos guardados con éxito',
@@ -108,6 +142,8 @@ document.getElementById('btnDelete').addEventListener('click', ()=>{
     primerApellido.value ="";
     segundoApellido.value = "";
     telefono.value = "";
+    imagen.src = "";
+    imagen.src = 'img/img_perfil.png';
 
     localStorage.setItem('Perfil', borrar)
 })
