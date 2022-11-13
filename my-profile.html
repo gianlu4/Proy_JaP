@@ -64,12 +64,73 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <section>
+      <div>
+        <form class="" id="form">
+        <div class="container">
+          <h3 class="mt-5">Perfil</h3>
+          
+            <div><hr width="95%">
+            
+          <div class="row">
+          <div class="col-6" id="contenedorNombre"><!--Puse id en el contenedor para ponerle el was validated en el script-->
+              <label for="" class="form-label text-muted ">Primer Nombre *</label>
+              <input  class="form-control" type="text" placeholder=""name="invalid" id="primerNombre" style="width: 90%;" required >
+              <div id="hola" class="invalid-feedback ">
+                Debe ingresar su nombre.
+              </div>
+          </div>
+          <div class="col-6">
+            <label for="" class="form-label text-muted">Segundo Nombre</label>
+            <input  class="form-control" type="text" placeholder=""name="noNeedsValidation" id="segundoNombre" style="width: 90%;">
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-6" id="contenedorApellido">
+              <label for="" class="form-label text-muted">Primer Apellido *</label>
+              <input  class="form-control" type="text" placeholder=""name="invalid" id="primerApellido" style="width: 90%;" required >
+              <div class="invalid-feedback">
+                Debe ingresar su apellido.
+              </div>
+            </div>
+          <div class="col-6">
+            <label for="" class="form-label text-muted">Segundo Apellido</label>
+            <input  class="form-control" type="text" placeholder=""name="noNeedsValidation" id="segundoApellido" style="width: 90%;">
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-6" id="contenedorEmail">
+              <label for="" class="form-label text-muted">E-mail *</label>
+              <input  class="form-control" type="email" placeholder=""name="invalid" id="email" style="width: 90%;" required >
+              <div class="invalid-feedback">
+                Debe ingresar un e-mail.
+              </div>
+            </div>
+          <div class="col-6">
+            <label for="" class="form-label text-muted">Telefono de contacto</label>
+            <input  class="form-control" type="text" placeholder=""name="noNeedsValidation" id="telefono" style="width: 90%;">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="" class="form-label text-muted">Imagen de perfil</label>
+            <input  class="form-control" type="file" name="noNeedsValidation" id="imagenDePerfil" accept="image/png,image/jpeg" style="width: 90%;">
+          </div>
+        <div class="col-6">
+          
+        </div>
       </div>
-    </div>
+        </div>
+        <br>
+        <hr width="95%">
+        <button id="btnSave" type="button" class="btn btn-dark">Guardar cambios</button>
+        <button type="button" id="btnDelete" class="btn btn-link">Reestablecer valores</button>
+        </div>
+      </form>
+      </div>     
+  </section>
   </main>
+</div>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

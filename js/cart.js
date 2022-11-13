@@ -29,7 +29,7 @@ function limpiar (i) {
 function showCART (array) {
 
     let HTMLcarrito ="";
-    
+
 for(let i = 0; i < array.length; i ++){
 
         let datosCarrito = array[i];
